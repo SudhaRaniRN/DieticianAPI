@@ -41,4 +41,9 @@ public class LoggerLoad {
 
 		}
 
+	public static void info(int message) {
+		logger.info(message);
+		
+	}
+
 }

@@ -18,7 +18,7 @@ public class ExcelReader {
 	
 	public static int totalRow;
 
-	public List<Map<String, String>> getData(String excelFilePath, String sheetName)
+	public LinkedHashMap<String, String> getData(String excelFilePath, String sheetName)
 			throws InvalidFormatException, IOException {
 
 		Workbook workbook = WorkbookFactory.create(new File(excelFilePath));
@@ -27,14 +27,14 @@ public class ExcelReader {
 		return readSheet(sheet);
 	}
 
-	private List<Map<String, String>> readSheet(Sheet sheet) {
+	private LinkedHashMap<String, String> readSheet(Sheet sheet) {
 
 		Row row;
 		Cell cell;
 
 		totalRow = sheet.getLastRowNum();
 
-		List<Map<String, String>> excelRows = new ArrayList<Map<String, String>>();
+		LinkedHashMap<String, String> excelRows = new LinkedHashMap<String,String>();
 
 		for (int currentRow = 1; currentRow <= totalRow; currentRow++) {
 
@@ -54,7 +54,7 @@ public class ExcelReader {
 				columnMapdata.put(columnHeaderName, cell.getStringCellValue());
 			}
 
-			excelRows.add(columnMapdata);
+			excelRows.putAll(columnMapdata);
 		}
 
 		return excelRows;

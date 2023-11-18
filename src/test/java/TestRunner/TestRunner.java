@@ -3,7 +3,6 @@ package TestRunner;
 
 
 import org.junit.runner.RunWith;
-
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 
@@ -12,7 +11,7 @@ import io.cucumber.junit.CucumberOptions;
 		plugin= {"pretty", "html:target/cucumberreport.html"},
 				monochrome = true,
 				tags = "",
-				features= {"src/test/resources/features"},
+				features= {"src/test/resources/Features"},
 				glue = {"StepDefinitions"}
 		
 		
