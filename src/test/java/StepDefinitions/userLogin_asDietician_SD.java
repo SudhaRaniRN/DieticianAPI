@@ -1,20 +1,11 @@
 package StepDefinitions;
 
 import java.io.IOException;
-import java.net.URI;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
+import io.restassured.module.jsv.JsonSchemaValidator;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.Assert;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import EndPoints.URLs;
 import Utilities.ExcelReader;
 import Utilities.*;
 import io.cucumber.java.en.Given;
@@ -25,49 +16,35 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import Utilities.ScenarioContext;
 import TestRequests.*;
+import TestRunner.Testrunner;
 public class userLogin_asDietician_SD {
 	
 	ExcelReader ER = new ExcelReader();   
 	Excelclass EC = new Excelclass();
-	Extract_values_JsonResponse EVJ = new Extract_values_JsonResponse();
 	Response loginresponse;
 	Response  logoutResponse;
-	 private LinkedHashMap<String, String> map;
+	 private HashMap<String, Object> map;
 	 String token;
-	 
-//	@Given("User creates POST Request {string} and {int} for the API endpoint with valid credentials")
-//	public void user_creates_post_request_for_the_api_endpoint_with_valid() throws InvalidFormatException, IOException  {
-//		
-//		Response[] responses = null;
-//		HashMap<String,Object>map = new HashMap<String,Object>(); 
-//		List<Map<String, String>>data = ER.getData(URLs.Excelpath,"Sheet1");
-//		
-//		int rownumber = 0;
-//		map.put("password", data.get(rownumber).get("password"));
-//		map.put("userLoginEmail", data.get(rownumber).get("userLoginEmail"));
-//		response= RestAssured.given().spec(RequestSpec.UserLogin()).body(map).when().post();
-//		if (responses == null) {
-//            responses = new Response[data.size()];
-//            }
-//	}
-//
-//	@When("User sends HTTPS Request and  request Body with mandatory fields")
-//	public void user_sends_https_request_and_request_body_with_mandatory_fields() {
-//	  
-//	}
-//
-//	@Then("User is able to login and response status code should be {int}")
-//	public void user_is_able_to_login_and_response_status_code_should_be(Integer int1) {
-//	  
-//	}
+	 String Token;
+	 int rownumber;
+
+	 private ScenarioContext scenarioContext;
+	 RequestSpecBuilder requestspec; 
+	 RequestSpecBuilder requestSpecBuilder = new RequestSpecBuilder();
+
 	
+	   
 	@Given("User creates POST Request {string} and {int} for the API endpoint with valid credentials")
-	public void user_creates_post_request_and_for_the_api_endpoint_with_valid_credentials(String string, Integer int1) throws InvalidFormatException, IOException {
+	public void user_creates_post_request_and_for_the_api_endpoint_with_valid_credentials(String Sheetname, Integer rownumber) throws InvalidFormatException, IOException {
 		Response[] responses = null;
 		
-		 map = EC.UserData(URLs.Excelpath, "Sheet1");
 		
+		
+		// map = EC.UserData(URLs.Excelpath, "Sheet1");
+		//map = EC.UserData("Sheet1", rownumber);
+		map = Excelclass.UserData(Sheetname, rownumber);
 		System.out.println(map);
 		
           
@@ -82,24 +59,11 @@ public class userLogin_asDietician_SD {
         RequestSpecification requestSpec = RequestSpec.UserLogin();
         
         loginresponse = RestAssured.given().spec(requestSpec).body(map).when().post();
+        //.body(JsonSchemaValidator.matchesJsonSchemaInClasspath("C:\\Users\\yours\\git\\DieticianAPI\\src\\test\\resources\\Data\\UserSchemaValidation.json"));
         
         
-//        Response response1 = RestAssured.given()
-//                .headers("Authorization", "bearer " + EVJ.parseTokenFromResponseBody(loginresponse.getBody().asString()),
-//                        "Content-Type", ContentType.JSON,
-//                        "Accept", ContentType.JSON)
-//                // ... other headers or request configuration ...
-//                .when()
-//                .post(URLs.loginendpoint);  // Replace with your actual endpoint
-    }
-       
-	    
-
-//		response= RestAssured.given().spec(requestSpec).body(map).when().post();
-//		
-//		
-//		String responseBody = response.getBody().asString();
-//		System.out.println("Response Body: " + responseBody);
+        
+	}        
 
 	
 
@@ -115,46 +79,49 @@ public class userLogin_asDietician_SD {
 	            //System.out.println(statusCode);
 	            LoggerLoad.info(statusCode);
 	       	 
-	            
-	            String token = EVJ.parseTokenFromResponseBody(responseBody);
+	            String token = loginresponse.jsonPath().getString("token");
+	           
 	            System.out.println(token);
+//	            
+//		loginresponse.then().statusCode(200)
+//	    .body("password", containsString("Bloom20"))
+//	    .body("programStatus", equalTo("Active"))
+//        .header("Content-Type", equalTo("application/json"))
+//        .body("programName", instanceOf(String.class))
+//        .body("programId", instanceOf(Integer.class))
+//        .assertThat().body(JsonSchemaValidator.matchesJsonSchemaInClasspath("ProgramModule.json"));
+//	            
+	           
+	            // Storing data (token) in one step
 	            
+	            Object settoken = Testrunner.scenarioContext.setContext("Token", token);
+				
+	            System.out.println("Settoken" + settoken);
 	            System.out.println("Bearer "+token);
-	            RestAssured.given().header("Authorization","Bearer "+token,
-	   				 "Content-Type", ContentType.JSON,
-	                    "Accept", ContentType.JSON);
-
+	            RestAssured.given().header("Authorization","Bearer "+token);
 	        }
-//	        Response response1 = RestAssured.given()
-//	                .headers("Authorization", "bearer " + EVJ.parseTokenFromResponseBody(loginresponse.getBody().asString()),
-//	                        "Content-Type", ContentType.JSON,
-//	                        "Accept", ContentType.JSON)
-//	                // ... other headers or request configuration ...
-//	                .when()
-//	                .post(URLs.loginendpoint);  // Replace with your actual endpoint
-	        
-	}
+	   				
+	          
+	        }
+     
+	
+	 
 
 	@Given("User creates GET Request for the API endpoint")
 	public void user_creates_get_request_for_the_api_endpoint() {
 		
-//		 RequestSpecBuilder Uri = RequestSpec.userlogout();
-       	 //String token = EVJ.parseTokenFromResponseBody(loginresponse.getBody().asString());
 
-
-
-
-		 logoutResponse = RestAssured.given().spec(RequestSpec.userlogout()).when().get();
-				 
-				 
-//				 
-//				 .header("Authorization","Bearer"+" "+token,
-//				 "Content-Type", ContentType.JSON,
-//                 "Accept", ContentType.JSON)
-//         
-//         .when()
-//         .get("https://dietician-dev-41d9a344a720.herokuapp.com/dietician/logoutdietician");  // Replace with your actual endpoin
-//		 
+		// Retrieving the stored data in another step
+		
+		Object gettoken =  Testrunner.scenarioContext.getContext("Token", token);
+	    System.out.println("gettoken " +gettoken);
+	    RequestSpecification requestSpec1 = RequestSpec.userlogout();
+		// logoutResponse = RestAssured.given().spec(requestSpec1).when().get();
+		
+		 logoutResponse = RestAssured.given().header("Authorization", "Bearer " + gettoken).spec(requestSpec1).when().get();
+	       
+		
+		
 		 System.out.println("Status Code: " + logoutResponse.getStatusCode());
 		    System.out.println("Response Body: " + logoutResponse.getBody().asString());
 		    System.out.println("Headers: " + logoutResponse.getHeaders());

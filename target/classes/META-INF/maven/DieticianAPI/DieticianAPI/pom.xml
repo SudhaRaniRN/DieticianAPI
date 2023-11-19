@@ -15,13 +15,13 @@
 <dependency>
     <groupId>io.cucumber</groupId>
     <artifactId>cucumber-java</artifactId>
-    <version>7.13.0</version>
+    <version>7.2.3</version>
 </dependency>
 <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
 <dependency>
     <groupId>io.cucumber</groupId>
     <artifactId>cucumber-junit</artifactId>
-    <version>7.13.0</version>
+    <version>7.2.3</version>
     <scope>test</scope>
 </dependency>
 <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
@@ -86,7 +86,12 @@
 		    <scope>provided</scope>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
-
+<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-picocontainer -->
+<dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>cucumber-picocontainer</artifactId>
+    <version>7.3.0</version>
+</dependency>
 
 
   </dependencies>

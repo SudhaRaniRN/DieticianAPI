@@ -1,7 +1,7 @@
-@tag
+
 Feature: POST REQUEST(User Login)
 
-  @tag1
+ @Login
   Scenario Outline: Check if User able to login with valid credentials,valid Url and Valid endpoint
     Given User creates POST Request "<Sheetname>" and <rownumber> for the API endpoint with valid credentials
     When User sends HTTPS Request and  request Body with mandatory fields
@@ -10,7 +10,9 @@ Feature: POST REQUEST(User Login)
     Examples: 
       | Sheetname | rownumber |
       | Sheet1    |         0 |
-
+     
+     
+@Logout
   Scenario: Check if User able to logout
     Given User creates GET Request for the API endpoint
     When User sends HTTPS Request with valid Url and valid endpoint
