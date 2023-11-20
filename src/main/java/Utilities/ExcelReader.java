@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -22,8 +23,9 @@ public class ExcelReader {
 			throws InvalidFormatException, IOException {
 
 		Workbook workbook = WorkbookFactory.create(new File(excelFilePath));
-		org.apache.poi.ss.usermodel.Sheet sheet = workbook.getSheet(sheetName);
-		workbook.close();
+		
+		Sheet sheet = workbook.getSheet(sheetName);
+        workbook.close();
 		return readSheet(sheet);
 	}
 
@@ -35,6 +37,7 @@ public class ExcelReader {
 		totalRow = sheet.getLastRowNum();
 
 		List<Map<String, String>> excelRows = new ArrayList<Map<String, String>>();
+		DataFormatter dataFormatter = new DataFormatter();
 
 		for (int currentRow = 1; currentRow <= totalRow; currentRow++) {
 
@@ -47,11 +50,15 @@ public class ExcelReader {
 			for (int currentColumn = 0; currentColumn < totalColumn; currentColumn++) {
 
 				cell = row.getCell(currentColumn);
-
-				String columnHeaderName = sheet.getRow(sheet.getFirstRowNum()).getCell(currentColumn)
-						.getStringCellValue();
-
-				columnMapdata.put(columnHeaderName, cell.getStringCellValue());
+				 if (cell == null) {
+	                    columnMapdata.put("Column" + currentColumn, ""); // Add an empty string for null cells
+	                } else {
+	                    String cellValue = dataFormatter.formatCellValue(cell);
+	                    String columnHeaderName = sheet.getRow(sheet.getFirstRowNum()).getCell(currentColumn)
+	                            .getStringCellValue();
+	                    columnMapdata.put(columnHeaderName, cellValue);
+	                }
+				
 			}
 
 			excelRows.add(columnMapdata);
@@ -64,9 +71,8 @@ public class ExcelReader {
 
 		return totalRow;
 	}
-
+ 
 }
-
 
 
 
