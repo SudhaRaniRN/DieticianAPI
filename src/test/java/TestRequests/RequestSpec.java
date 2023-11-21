@@ -25,6 +25,21 @@ public class RequestSpec {
 		RequestSpecification res = req.build();
 		return res;
 	}
+
+	public static RequestSpecification UpdateInvPatient() {
+		req.setBaseUri(URLs.BaseURL);
+		req.setBasePath(URLs.UpdatePatient);
+		RequestSpecification res = req.build();
+		return res;
+	}
+
+	public static RequestSpecification InvEndPoint() {
+		req.setBaseUri(URLs.BaseURL);
+		req.setBasePath(URLs.UpdatePatient);
+		RequestSpecification res = req.build();
+		return res;
+	}
+
 	public static RequestSpecification DeletePatient() {
 		req.setBaseUri(URLs.BaseURL);
 		req.setBasePath(URLs.DeletePatient);

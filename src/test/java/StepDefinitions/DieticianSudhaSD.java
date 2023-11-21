@@ -31,6 +31,7 @@ public class DieticianSudhaSD {
 	String FoodCategory;
 	String DateOfBirth;
 	String patientInfoJson;
+	Object setpatientId;
 	
 	
 	
@@ -83,6 +84,11 @@ public class DieticianSudhaSD {
 	public void response_status_code_should_be_created_and_response_body_contains_created_patient_with_details(Integer int1) {
 		response.then().statusCode(201)
 		.assertThat().body(JsonSchemaValidator.matchesJsonSchemaInClasspath("patientInfo.json"));
+		
+		String CreatedpatientId = response.jsonPath().getString("patientId");
+		 
+		  setpatientId = TestRunner.scenarioContext.setContext("retrivepatientId",CreatedpatientId);
+		 
 	}
 
 }
