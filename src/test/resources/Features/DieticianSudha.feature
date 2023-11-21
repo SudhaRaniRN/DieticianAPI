@@ -11,6 +11,7 @@ Feature: Creating new patient
     Examples: 
       | Sheetname | rownumber |
       | Sheet1    |         0 |
+     
 
   @tag1
   Scenario Outline: Check if user able to create a new patient with valid endpoint and request body (non existing values)
@@ -20,6 +21,33 @@ Feature: Creating new patient
     
     Examples:
    |Sheetname|rownumber|
-   |Sheet1|0|
+   | Sheet3    |         0 |
+   
 
-  
+@tag2
+  Scenario Outline: Check if user able to create new patient with valid endpoint and request body (existing values)
+    Given User creates POST Request "<Sheetname>" and <rownumber> for the API endpoint
+     When User sends HTTPS Request and request Body with mandatory, additional fields.
+     Then Response status code should be 400 bad request and response body contains error message
+     Examples:
+   |Sheetname|rownumber|
+   |Sheet3|0|
+     
+ @tag3
+   Scenario Outline: Check if user able to create new patient missing mandatory fields in request body
+   Given User creates POST Request "<Sheetname>" and <rownumber> for the API endpoint
+   When User sends HTTPS Request and request Body  (missing mandatory fields)
+   Then Response status code should be 400 bad request and response body contains error message
+   Examples:
+   |Sheetname|rownumber|
+   |S-Neg|0|
+   
+  @tag4
+  Scenario Outline: Check if user able to create new patient with invalid endpoint
+  Given User creates POST Request "<Sheetname>" and <rownumber> for the API endpoint
+  When User send POST request with invalid endpoint
+  Then Response status code should be 404 Not Found and response body contains all the programs
+  Examples:
+   |Sheetname|rownumber|
+   |Sheet1|0|
+       
