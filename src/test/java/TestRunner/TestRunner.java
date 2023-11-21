@@ -15,7 +15,7 @@ import io.cucumber.junit.CucumberOptions;
 				 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
 				monochrome = true,
 				tags = "",
-				features= {"src/test/resources/features/AUser_login.feature"},
+				features= {"src/test/resources/features"},
 				glue = {"StepDefinitions"}
 		
 		
