@@ -27,7 +27,8 @@ public class RequestSpec {
 	}
 	public static RequestSpecification DeletePatient() {
 		req.setBaseUri(URLs.BaseURL);
-		req.setBasePath(URLs.DeletePatient);
+		//req.setBasePath(URLs.DeletePatient);
+		//req.addPathParam("patientId", patientId);
 		RequestSpecification res = req.build();
 		return res;
 	}
@@ -76,5 +77,6 @@ public class RequestSpec {
 		RequestSpecification res = req.build();
 		return res;
 	}
+
 	
 }
