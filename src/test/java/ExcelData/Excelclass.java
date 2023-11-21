@@ -34,9 +34,10 @@ public class Excelclass {
 		List<Map<String, String>>data = ER.getData(URLs.Excelpath, Sheetname);
 		userpassword =  (String) map.put("password",data.get(rownumber).get("password") );
 		mailId= (String) map.put("userLoginEmail", data.get(rownumber).get("userLoginEmail") );
+		
 		return map;
 	}
-	
+		
 	public void patientInfo(String Sheetname, Integer rownumber) throws InvalidFormatException, IOException{
 		
 	

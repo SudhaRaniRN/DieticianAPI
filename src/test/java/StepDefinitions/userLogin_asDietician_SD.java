@@ -29,14 +29,29 @@ public class userLogin_asDietician_SD  {
 	public void user_creates_post_request_and_for_the_api_endpoint_with_valid_credentials(String Sheetname, Integer rownumber) throws Exception {
 		
 			map = Excelclass.UserData(Sheetname, rownumber);
-			System.out.println(map);
+			System.out.println("map"+ map);
 	}
 
 	@When("User sends HTTPS Request and  request Body with mandatory fields")
 	public void user_sends_https_request_and_request_body_with_mandatory_fields() {
 		
-		Assert.assertNotNull("Map is null. Make sure it is initialized in the previous step.", map);
+		/*Assert.assertNotNull("Map is null. Make sure it is initialized in the previous step.", map);
 	
+        loginresponse = RestAssured
+        		.given()
+        		.spec(RequestSpec.UserLogin())
+        		.body(map)
+        		//.param("MorbidityByName1")
+        		.when().post();
+        System.out.println(loginresponse);
+        token = loginresponse.jsonPath().getString("token");
+        System.out.println(token);
+      Object gettoken = TestRunner.scenarioContext.setContext("Token", token); 
+        System.out.println(gettoken);
+        loginresponse.then().log().all().extract().response();
+		LoggerLoad.info("the response of the rquest is " + loginresponse);*/
+		Assert.assertNotNull("Map is null. Make sure it is initialized in the previous step.", map);
+		
         loginresponse = RestAssured
         		.given()
         		.spec(RequestSpec.UserLogin())
@@ -46,7 +61,8 @@ public class userLogin_asDietician_SD  {
       Object gettoken = TestRunner.scenarioContext.setContext("Token", token); 
         System.out.println(gettoken);
         loginresponse.then().log().all().extract().response();
-		LoggerLoad.info("the response of the rquest is " + loginresponse);
+        LoggerLoad.info("the response of the rquest is " + loginresponse);
+		//Assert.assertNotNull("Map is null. Make sure it is initialized in the previous step.", map);
         
 	  
 	}

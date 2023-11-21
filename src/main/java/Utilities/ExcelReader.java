@@ -19,60 +19,50 @@ public class ExcelReader {
 	
 	public static int totalRow;
 
-	public List<Map<String, String>> getData(String excelFilePath, String sheetName)
+	public static List<Map<String, String>> getData(String excelFilePath, String sheetName)
 			throws InvalidFormatException, IOException {
 
 		Workbook workbook = WorkbookFactory.create(new File(excelFilePath));
-		
-		Sheet sheet = workbook.getSheet(sheetName);
-        workbook.close();
+		org.apache.poi.ss.usermodel.Sheet sheet = workbook.getSheet(sheetName);
+		workbook.close();
 		return readSheet(sheet);
 	}
 
-	private List<Map<String, String>> readSheet(Sheet sheet) {
+	private static List<Map<String, String>> readSheet(Sheet sheet) {
 
-		Row row;
-		Cell cell;
+	    totalRow = sheet.getLastRowNum();
 
-		totalRow = sheet.getLastRowNum();
+	    List<Map<String, String>> excelRows = new ArrayList<>();
+	    DataFormatter dataFormatter = new DataFormatter();
 
-		List<Map<String, String>> excelRows = new ArrayList<Map<String, String>>();
-		DataFormatter dataFormatter = new DataFormatter();
+	    for (int currentRow = 1; currentRow <= totalRow; currentRow++) {
+	        Row row = sheet.getRow(currentRow);
 
-		for (int currentRow = 1; currentRow <= totalRow; currentRow++) {
+	        if (row != null) {
+	            LinkedHashMap<String, String> columnMapdata = new LinkedHashMap<>();
 
-			row = sheet.getRow(currentRow);
+	            int totalColumn = row.getLastCellNum();
 
-			int totalColumn = row.getLastCellNum();
+	            for (int currentColumn = 0; currentColumn < totalColumn; currentColumn++) {
+	                Cell cell = row.getCell(currentColumn);
 
-			LinkedHashMap<String, String> columnMapdata = new LinkedHashMap<String, String>();
-
-			for (int currentColumn = 0; currentColumn < totalColumn; currentColumn++) {
-
-				cell = row.getCell(currentColumn);
-				 if (cell == null) {
-	                    columnMapdata.put("Column" + currentColumn, ""); // Add an empty string for null cells
-	                } else {
-	                    String cellValue = dataFormatter.formatCellValue(cell);
+	                if (cell != null) {
 	                    String columnHeaderName = sheet.getRow(sheet.getFirstRowNum()).getCell(currentColumn)
 	                            .getStringCellValue();
+
+	                    // Use a DataFormatter to handle different cell types
+	                    String cellValue = dataFormatter.formatCellValue(cell);
+
 	                    columnMapdata.put(columnHeaderName, cellValue);
+	                } else {
+	                    // Handle the case when the cell is null, for example, by adding an empty string
+	                    columnMapdata.put("Column" + currentColumn, "");
 	                }
-				
-			}
+	            }
 
-			excelRows.add(columnMapdata);
-		}
+	            excelRows.add(columnMapdata);
+	        }
+	    }
 
-		return excelRows;
-	}
-
-	public int countRow() {
-
-		return totalRow;
-	}
- 
-}
-
-
-
+	    return excelRows;
+	}}
