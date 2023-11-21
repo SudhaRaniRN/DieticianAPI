@@ -152,7 +152,24 @@ public class RequestSpec {
 		RequestSpecification res = req.build();
 		return res;
 	}*/
-	
+
+	public static RequestSpecification Invalid_BaseURL() {
+		  req.setBaseUri(URLs.Invalid_BaseURL);
+		  req.setBasePath(URLs.logoutendpoint);
+		  req.setContentType(ContentType.JSON);
+		  req.setAccept(ContentType.JSON);
+		  RequestSpecification reqspec2 = req.build();		
+		  return reqspec2;
+	  }
+	  
+	  public static RequestSpecification Invalid_loginend() {
+		  req.setBaseUri(URLs.BaseURL);
+		  req.setBasePath(URLs.Invalid_loginendpoint);
+		  req.setContentType(ContentType.JSON);
+		  req.setAccept(ContentType.JSON);
+		  RequestSpecification reqspec3 = req.build();		
+		  return reqspec3;
+	  }
 }
 	
 	
