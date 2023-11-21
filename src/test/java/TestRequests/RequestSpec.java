@@ -18,7 +18,14 @@ public class RequestSpec {
 		RequestSpecification res = req.build();
 		return res;
 	}
-	
+	public static RequestSpecification createPatientInv() {
+		req.setBaseUri(URLs.BaseURL);
+		req.setBasePath(URLs.createPatientInv);
+		req.setContentType("multipart/*");
+		  //req.setAccept(ContentType.JSON);
+		RequestSpecification res = req.build();
+		return res;
+	}
 	public static RequestSpecification UpdatePatient() {
 		req.setBaseUri(URLs.BaseURL);
 		req.setBasePath(URLs.UpdatePatient);
@@ -28,6 +35,12 @@ public class RequestSpec {
 	public static RequestSpecification DeletePatient() {
 		req.setBaseUri(URLs.BaseURL);
 		req.setBasePath(URLs.DeletePatient);
+		RequestSpecification res = req.build();
+		return res;
+	}
+	public static RequestSpecification DeleteINvPatient() {
+		req.setBaseUri(URLs.BaseURL);
+		req.setBasePath(URLs.DeleteInvPatient);
 		RequestSpecification res = req.build();
 		return res;
 	}
@@ -76,5 +89,7 @@ public class RequestSpec {
 		RequestSpecification res = req.build();
 		return res;
 	}
+	
+	
 	
 }
