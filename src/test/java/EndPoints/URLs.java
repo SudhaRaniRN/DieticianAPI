@@ -20,4 +20,8 @@ public class URLs {
 	public static String Excelpath2 = "./src\\main\\resources\\TestData\\TestData.XLSX";
 	public static String Invalid_BaseURL="https://dietician-dev-41d9a344a720.herokuapp.com";
 	public static String Invalid_loginendpoint="/login123";
+
+public static String InvalidBaseUrl = "https://dietician-dev-41d9a344a720.herokuapp.com";
+	public static String InvalidEP = "/pat"; 
+	
 }
