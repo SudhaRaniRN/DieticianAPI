@@ -171,7 +171,18 @@ public class RequestSpec {
 		  return reqspec3;
 	  }
 }
-	
+		public static RequestSpecification Neg_getallpatients() {
+		req.setBaseUri(URLs.InvalidBaseUrl);
+		req.setBasePath(URLs.GetAllPatient);
+		RequestSpecification res =req.build();
+		return res;
+				}
+	public static RequestSpecification InvalidEP_getallpatients() {
+		req.setBaseUri(URLs.BaseURL);
+		req.setBasePath(URLs.InvalidEP);
+		RequestSpecification res =req.build();
+		return res;
+	}
 	
 	
 }
