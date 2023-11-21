@@ -14,8 +14,8 @@ import io.cucumber.junit.CucumberOptions;
 				"rerun:target/failedrerun.txt", "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
 				 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
 				monochrome = true,
-				tags = "",
-				features= {"src/test/resources/features/AUser_login.feature"},
+				tags = "@pranitha",
+				features= {"src/test/resources/features"},
 				glue = {"StepDefinitions"}
 		
 		

@@ -1,6 +1,7 @@
 package TestRunner;
 import org.junit.runner.RunWith;
 
+import Utilities.ScenarioContext;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 
@@ -8,8 +9,8 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(
 		plugin= {"pretty", "html:target/cucumberreport.html"},
 				monochrome = true,
-				tags = "",
-				features= {"@target/failedrerun.txt"},
+				tags = "@pranitha",
+				features= {"src/test/resources/features"},
 				glue = {"StepDefinitions"}
 		
 		
@@ -18,5 +19,6 @@ import io.cucumber.junit.CucumberOptions;
 		)
 
 public class TestRunner2 {
-
+ 
+	public static ScenarioContext scenarioContext = new ScenarioContext();
 }
