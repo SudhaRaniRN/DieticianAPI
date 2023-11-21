@@ -18,4 +18,6 @@ public class URLs {
 	public static String logoutendpoint = "/logoutdietician";
 	public static String filePath = "./src/main/resources/TestData/Copy of Hypo Thyroid-Report.pdf.pdf";
 	public static String Excelpath2 = "./src\\main\\resources\\TestData\\TestData.XLSX";
+	public static String Invalid_BaseURL="https://dietician-dev-41d9a344a720.herokuapp.com";
+	public static String Invalid_loginendpoint="/login123";
 }
