@@ -12,9 +12,11 @@ public class URLs {
 	public static String GetAllMorbidity =  "/morbidity";
 	public static String GetMorbidityByName=  "/morbidity/{morbidityName}";
 	public static String loginendpoint = "/login";
-	public static String Excelpath = "./src\\main\\resources\\TestData\\TestData.xlsx";
+	public static String Excelpath = "./src/main/resources/TestData/UserCredentials.xlsx";
 	
 	public static String logoutendpoint = "/logoutdietician";
 	public static String filePath = "./src/main/resources/TestData/Copy of Hypo Thyroid-Report.pdf.pdf";
 	public static String Excelpath2 = "./src\\main\\resources\\TestData\\PatientInfo.XLSX";
+	public static String Invalid_BaseURL="https://dietician-dev-41d9a344a720.herokuapp.com";
+	public static String Invalid_loginendpoint="/login123";
 }
