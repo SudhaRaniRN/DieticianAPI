@@ -11,7 +11,6 @@ import ExcelData.Excelclass;
 import TestRequests.RequestSpec;
 import TestRunner.TestRunner;
 import Utilities.ExcelReader;
-import Utilities.ExcelReader2;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
