@@ -24,4 +24,15 @@ public class URLs {
 public static String InvalidBaseUrl = "https://dietician-dev-41d9a344a720.herokuapp.com";
 	public static String InvalidEP = "/pat"; 
 	
+	public static String MorbidityByName1 = "/morbidity/Fasting Glucose";
+	public static String MorbidityByName2 = "/morbidity/Average Glucose";
+	public static String MorbidityByName3 = "/morbidity/Plasma Glucose";
+	public static String MorbidityByName4 = "/morbidity/HbA1c";
+	public static String MorbidityByName5 = "/morbidity/TSH";
+	public static String MorbidityByName6 = "/morbidity/T3";
+	public static String MorbidityByName7 = "/morbidity/T4";
+	public static String MorbidityByName8 = "/morbidity/Blood Pressure Levels";
+	public static String NegativeMorbidityByName ="/morbidity/Cholestrol";
+	public static String EmptyMorbidityByName = "/morbidity/";
+	
 }

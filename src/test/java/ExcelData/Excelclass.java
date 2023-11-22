@@ -9,12 +9,10 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import EndPoints.URLs;
 import Utilities.ExcelReader;
-import Utilities.ExcelReader2;
 
 public class Excelclass {
 	
 	static ExcelReader ER = new ExcelReader(); 
-	ExcelReader2 ER2= new ExcelReader2(URLs.Excelpath);
 	public static String userpassword;
 	public static  String mailId;
 	//public static LinkedHashMap<String, String> ExcelDataMap;

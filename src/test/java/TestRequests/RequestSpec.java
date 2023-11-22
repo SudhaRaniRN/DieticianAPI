@@ -85,7 +85,7 @@ public class RequestSpec {
 	
 	public static RequestSpecification WrongendpointGetAllMorbidity() {
 		req.setBaseUri(URLs.BaseURL);
-		req.setBasePath(URLs.NegativeEndpointGetAllMorbidity);
+		req.setBasePath(URLs.InvalidEP);
 		RequestSpecification res = req.build();
 		return res;
 	}
@@ -170,7 +170,7 @@ public class RequestSpec {
 		  RequestSpecification reqspec3 = req.build();		
 		  return reqspec3;
 	  }
-}
+
 		public static RequestSpecification Neg_getallpatients() {
 		req.setBaseUri(URLs.InvalidBaseUrl);
 		req.setBasePath(URLs.GetAllPatient);
@@ -183,6 +183,16 @@ public class RequestSpec {
 		RequestSpecification res =req.build();
 		return res;
 	}
-	
-	
+	public static RequestSpecification UpdateInvPatient() {
+		req.setBaseUri(URLs.BaseURL);
+		req.setBasePath(URLs.UpdatePatient);
+		RequestSpecification res = req.build();
+		return res;
+	}
+	public static RequestSpecification InvEndPoint() {
+		req.setBaseUri(URLs.BaseURL);
+		req.setBasePath(URLs.UpdatePatient);
+		RequestSpecification res = req.build();
+		return res;
+	}
 }
