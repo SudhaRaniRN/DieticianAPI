@@ -60,7 +60,18 @@ Then Dieticien get all Patient details and Response status code should be 200 ok
     Examples:
    |Sheetname|rownumber|
    |Pranita|0|
-  
+   
+   Scenario: Check if user able to get patients morbidity details
+   Given Dieticien  create get request to get patients morbididty details 
+   When Dieticien send HTTPS Request
+   Then Response status code should be 200 with response having fileid
+   
+   Scenario: Check if user able to get Retrieve Patient file by FileId
+   Given Dieticien  create get request with valid url and valid endpoint and valid fileid
+   When Dieticien send HTTPS Request
+   Then Response status code should be 200 with response having testreports
+
+   
   @tag2
    Scenario Outline: Check if user able to update a patient with valid PatientID and mandatory request body
    Given User creates PUT Request "<Sheetname>" and <rownumber> for the API endpoint with Valid patientId

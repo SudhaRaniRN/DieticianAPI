@@ -16,11 +16,13 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.Response;
 
 public class DieticianSudhaSD {
 	
+	private static final String CreatedpatientId = null;
 	ExcelReader ER= new ExcelReader();
 	private HashMap<String, Object> map1;
 	Response response;
@@ -35,7 +37,7 @@ public class DieticianSudhaSD {
 	String DateOfBirth;
 	String patientInfoJson;
 	Object setpatientId;
-	
+	Object setfileId;
 	
 	
 	@Given("User creates POST Request {string} and {int} for the API endpoint")
@@ -91,7 +93,42 @@ public class DieticianSudhaSD {
 		  setpatientId = TestRunner.scenarioContext.setContext("retrivepatientId",CreatedpatientId);
 	}
 	
+	@Given("Dieticien  create get request to get patients morbididty details")
+	public void dieticien_create_get_request_to_get_patients_morbididty_details() {
+		Object retrivepatientId = TestRunner.scenarioContext.getContext("retrivepatientId",CreatedpatientId);
+		 response = RestAssured.given()
+		            .header("Authorization", "Bearer " + retrievedToken)
+		            .header("Content-Type", ContentType.JSON)
+		            .header("Accept", ContentType.JSON)
+		            .spec(RequestSpec.Getpatientfiles())
+		            .pathParam("patientId", retrivepatientId)
+		            .get();
+	}
+
+	@Then("Response status code should be {int} with response having fileid")
+	public void response_status_code_should_be_with_response_having_fileid(Integer int1) {
+	  
+		response.then().statusCode(200);
+	    
+	    Object setfileId = TestRunner.scenarioContext.setContext("retrivefileId",CreatedpatientId);
+	}
+
+
+
 	
+	@Given("Dieticien  create get request with valid url and valid endpoint and valid fileid")
+	public void dieticien_create_get_request_with_valid_url_and_valid_endpoint_and_valid_fileid() {
+		  
+		Object getfileId = TestRunner.scenarioContext.getContext("retrivefileId",setfileId);
+
+		
+	}
+
+	@Then("Response status code should be {int} with response having testreports")
+	public void response_status_code_should_be_with_response_having_testreports(Integer int1) {
+		response.then().statusCode(200);
+	}
+
 
 	@Then("Response status code should be {int} bad request and response body contains error message")
 	public void response_status_code_should_be_bad_request_and_response_body_contains_error_message(Integer int1) {
