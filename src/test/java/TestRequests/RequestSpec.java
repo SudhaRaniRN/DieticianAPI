@@ -195,4 +195,10 @@ public class RequestSpec {
 		RequestSpecification res = req.build();
 		return res;
 	}
+	public static RequestSpecification Getpatientfiles() {
+		req.setBaseUri(URLs.BaseURL);
+		req.setBasePath(URLs.ViewFilesEP);
+		RequestSpecification res = req.build();
+		return res;
+	}
 }

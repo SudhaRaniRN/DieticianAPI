@@ -34,5 +34,6 @@ public static String InvalidBaseUrl = "https://dietician-dev-41d9a344a720.heroku
 	public static String MorbidityByName8 = "/morbidity/Blood Pressure Levels";
 	public static String NegativeMorbidityByName ="/morbidity/Cholestrol";
 	public static String EmptyMorbidityByName = "/morbidity/";
+	public static String ViewFilesEP = "/patient/testReports/viewFile/{fileId}";
 	
 }

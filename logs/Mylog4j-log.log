@@ -14,3 +14,12 @@
 [INFO ] 2023-11-19 19:40:15.436 [main] LoggerLoad - the response of the rquest is io.restassured.internal.RestAssuredResponseImpl@3a8ead9
 [INFO ] 2023-11-19 19:41:24.388 [main] LoggerLoad - the response of the rquest is io.restassured.internal.RestAssuredResponseImpl@3e5c7588
 [INFO ] 2023-11-19 19:47:04.740 [main] LoggerLoad - the response of the rquest is io.restassured.internal.RestAssuredResponseImpl@32cde414
+[INFO ] 2023-11-22 12:27:16.319 [main] LoggerLoad - The Response of the req is:io.restassured.internal.RestAssuredResponseImpl@bb12f41
+[INFO ] 2023-11-22 12:27:16.472 [main] LoggerLoad - The Response of the req is:io.restassured.internal.RestAssuredResponseImpl@20dd5870
+[INFO ] 2023-11-22 12:27:18.000 [main] LoggerLoad - the response of the rquest is io.restassured.internal.RestAssuredResponseImpl@702f4124
+[INFO ] 2023-11-22 12:47:09.594 [main] LoggerLoad - The Response of the req is:io.restassured.internal.RestAssuredResponseImpl@6c6379c
+[INFO ] 2023-11-22 12:47:09.769 [main] LoggerLoad - The Response of the req is:io.restassured.internal.RestAssuredResponseImpl@134abd78
+[INFO ] 2023-11-22 12:47:11.207 [main] LoggerLoad - the response of the rquest is io.restassured.internal.RestAssuredResponseImpl@64420e34
+[INFO ] 2023-11-22 12:47:20.455 [main] LoggerLoad - The Response of the req is:io.restassured.internal.RestAssuredResponseImpl@2c9cafa5
+[INFO ] 2023-11-22 12:47:20.632 [main] LoggerLoad - The Response of the req is:io.restassured.internal.RestAssuredResponseImpl@7d088813
+[INFO ] 2023-11-22 12:47:22.184 [main] LoggerLoad - the response of the rquest is io.restassured.internal.RestAssuredResponseImpl@5a90fcaa

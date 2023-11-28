@@ -19,7 +19,7 @@ public class ScenarioContext {
 			return value;
 	    }
 
-	    public Object getContext(String key, String token) {
+	    public Object getContext(String key, Object setfileId) {
 	         return scenarioData.get(key);
 	    }
 
